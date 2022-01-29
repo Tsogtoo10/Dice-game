@@ -1,16 +1,30 @@
-//Тоглогчийн ээлжийг хадгалах хувьсагч
-var activePlayer = 0;
-//Тоглогчдын цуглуулсан оноог хадгалах хувьсагч
-var scores = [0, 0];
-//Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
-var roundScore = 0;
-//Шооны аль талаараа буусныг хадгалах хувьсагч хэрэгтэй,1-6 гэсэн утгыг энэ хувьсагчид санамсаргүйгээр үүсгэж өгнө.
+//Тоглоомын бүх газарт ашиглагдах глобаль хувьсагчдыг зарлая
+var activePlayer;
+var scores;
+var roundScore;
+newGame();
+function newGame() {
+  //Тоглогчийн ээлжийг хадгалах хувьсагч
+  activePlayer = 0;
+  //Тоглогчдын цуглуулсан оноог хадгалах хувьсагч
+  scores = [0, 0];
+  //Тоглогчийн ээлжиндээ цуглуулж байгаа оноог хадгалах хувьсагч
+  roundScore = 0;
+  //Шооны аль талаараа буусныг хадгалах хувьсагч хэрэгтэй,1-6 гэсэн утгыг энэ хувьсагчид санамсаргүйгээр үүсгэж өгнө.
+  window.document.getElementById("score-0").textContent = 0;
+  window.document.getElementById("score-1").textContent = 0;
+  window.document.getElementById("current-0").textContent = 0;
+  window.document.getElementById("current-1").textContent = 0;
+  window.document.querySelector(".dice").style.display = "none";
+  document.getElementById("name-0").textContent = "Player 1";
+  document.getElementById("name-1").textContent = "Player 2";
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+  document.querySelector(".player-0-panel").classList.add("active");
+}
 
-window.document.getElementById("score-0").textContent = 0;
-window.document.getElementById("score-1").textContent = 0;
-window.document.getElementById("current-0").textContent = 0;
-window.document.getElementById("current-1").textContent = 0;
-window.document.querySelector(".dice").style.display = "none";
 function eeljSolih() {
   roundScore = 0;
   document.getElementById("current-" + activePlayer).textContent = 0;
@@ -51,7 +65,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
   document.getElementById("score-" + activePlayer).textContent =
     scores[activePlayer];
   //Ээлжийн оноог нь 0 болгоно
-  if (scores[activePlayer] >= 100) {
+  if (scores[activePlayer] >= 10) {
     document.getElementById("name-" + activePlayer).textContent = "Winner";
     document
       .querySelector(".player-" + activePlayer + "-panel")
@@ -59,4 +73,8 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
   } else {
     eeljSolih();
   }
+});
+//Шинэ тоглоом эхлүүлэх товчны эвент листенер
+document.querySelector(".btn-new").addEventListener("click", function () {
+  newGame();
 });
