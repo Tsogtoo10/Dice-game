@@ -72,7 +72,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
     //Ээлжийн оноог нь 0 болгоно
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       //Тоглоомыг дууссан төлөвт оруулна
       isGameOver = true;
       document.getElementById("name-" + activePlayer).textContent = "Winner";
